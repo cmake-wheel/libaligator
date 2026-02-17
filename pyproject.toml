@@ -1,38 +1,49 @@
 [build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+build-backend = "cmeel"
+requires = [
+  "cmeel-boost ~= 1.89.0",
+  "cmeel-fmt",
+  "cmeel-mimalloc",
+  "libcrocoddyl[build]",
+  "libpinocchio[build]",
+  "numpy"
+]
 
 [project]
+dependencies = [
+  "cmeel-boost ~= 1.89.0",
+  "cmeel-fmt",
+  "cmeel-mimalloc",
+  "libcrocoddyl",
+  "libpinocchio",
+  "numpy"
+]
+description = "Versatile and efficient framework for constrained trajectory optimization"
+license = "BSD-2-Clause"
 name = "aligator"
 readme = "README.md"
-requires-python = ">=3.8"
-dependencies = [
-    "numpy",
-]
-dynamic = ["version"]
+requires-python = ">=3.9"
+version = "0.18.0"
 
-[project.optional-dependencies]
-test = [
-    "pytest",
-    "pytest-cov",
+[tool.cmeel]
+configure-args = [
+  "-DBUILD_BENCHMARKS=OFF",
+  "-DBUILD_CROCODDYL_COMPAT=ON",
+  "-DBUILD_EXAMPLES=OFF",
+  "-DBUILD_PYTHON_INTERFACE=OFF",
+  "-DINSTALL_DOCUMENTATION=OFF"
 ]
-examples = [
-    "matplotlib",
-    "casadi",
-    "typed-argument-parser",
-    "meshcat @ git+https://github.com/inria-paris-robotic-lab/meshcat-python"
-]
-
-[tool.setuptools]
-packages = ["aligator"]
-package-dir = {"" = "python"}
+has-sitelib = false
 
 [tool.ruff.lint]
-select = ["E", "F"]
-ignore = ["E501"]
 exclude = [".git", "build*", "cmake"]
 fixable = ["E"]
+ignore = ["E501"]
+select = ["E", "F"]
 
 [tool.ruff.lint.per-file-ignores]
 "bindings/python/aligator/__init__.py" = ["F401", "F403"]
 "bindings/python/aligator/utils/__init__.py" = ["F401", "F403"]
+
+[tool.tomlsort]
+all = true
