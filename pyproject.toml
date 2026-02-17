@@ -20,7 +20,7 @@ dependencies = [
 ]
 description = "Versatile and efficient framework for constrained trajectory optimization"
 license = "BSD-2-Clause"
-name = "aligator"
+name = "libaligator"
 readme = "README.md"
 requires-python = ">=3.9"
 version = "0.18.0"
