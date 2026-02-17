@@ -12,7 +12,7 @@ on:
 
 env:
   CMEEL_LOG_LEVEL: DEBUG
-  DEPS: cmeel-fmt cmeel-mimalloc libcrocoddyl[build] libpinocchio[build]
+  DEPS: cmeel-fmt[build] cmeel-mimalloc[build] libcrocoddyl[build] libpinocchio[build]
   PROJECT: libaligator
 
 jobs:

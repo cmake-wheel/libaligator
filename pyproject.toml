@@ -2,8 +2,9 @@
 build-backend = "cmeel"
 requires = [
   "cmeel-boost ~= 1.89.0",
-  "cmeel-fmt",
-  "cmeel-mimalloc",
+  "cmeel-fmt[build]",
+  "cmeel-mimalloc[build]",
+  "cmeel[build]",
   "libcrocoddyl[build]",
   "libpinocchio[build]",
   "numpy"
