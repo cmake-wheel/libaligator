@@ -11,7 +11,8 @@ void exposeAutodiff() {
   using namespace autodiff;
   using context::CostAbstract;
   using context::CostData;
-  using context::DynamicsModel;
+  using context::ExplicitDynamics;
+  using context::ExplicitDynamicsData;
   using context::Manifold;
   using context::Scalar;
   using context::StageFunction;
@@ -24,18 +25,19 @@ void exposeAutodiff() {
         "Make a function into a differentiable function/dynamics using"
         " finite differences.",
         bp::init<xyz::polymorphic<Manifold>, xyz::polymorphic<StageFunction>,
-                 const Scalar>(bp::args("self", "space", "func", "eps")));
+                 const Scalar>(("self"_a, "space", "func", "eps")));
     bp::class_<FiniteDiffType::Data, bp::bases<StageFunctionData>>("Data",
                                                                    bp::no_init);
   }
 
   {
     using DynFiniteDiffType = DynamicsFiniteDifferenceHelper<Scalar>;
-    bp::scope _ = bp::class_<DynFiniteDiffType, bp::bases<DynamicsModel>>(
+    bp::scope _ = bp::class_<DynFiniteDiffType, bp::bases<ExplicitDynamics>>(
         "DynamicsFiniteDifferenceHelper",
-        bp::init<xyz::polymorphic<Manifold>, xyz::polymorphic<DynamicsModel>,
-                 const Scalar>(bp::args("self", "space", "dyn", "eps")));
-    bp::class_<DynFiniteDiffType::Data>("Data", bp::no_init);
+        bp::init<xyz::polymorphic<Manifold>, xyz::polymorphic<ExplicitDynamics>,
+                 const Scalar>(("self"_a, "space", "dyn", "eps")));
+    bp::class_<DynFiniteDiffType::Data, bp::bases<ExplicitDynamicsData>>(
+        "Data", bp::no_init);
   }
 
   {
@@ -46,7 +48,7 @@ void exposeAutodiff() {
             "Define a cost function's derivatives using finite differences.",
             bp::no_init)
             .def(bp::init<xyz::polymorphic<CostAbstract>, Scalar>(
-                bp::args("self", "cost", "fd_eps")));
+                ("self"_a, "cost", "fd_eps")));
     bp::class_<CostFiniteDiffType::Data, bp::bases<CostData>>("Data",
                                                               bp::no_init)
         .def_readonly("c1", &CostFiniteDiffType::Data::c1)

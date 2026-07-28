@@ -7,6 +7,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.19.1] - 2026-07-28
+
+### Fixed
+
+- multibody/tests: call `calc()` on constraint datas before any operation invoking `jacobian()`
+In Pinocchio 4.0, `jacobian()` no longer updates `cdata` internally and requires `calc()` to be called first.
+- include `<fmt/format.h>` where `fmt::format()`is used. Required since fmt 12.2.0
+
+## [0.19.0] - 2026-04-17
+
+### Added
+- Support the new Pinocchio 4 release (https://github.com/Simple-Robotics/aligator/pull/390)
+- manifolds: add `PinocchioLieGroup::lieGroup()` getter, expose to Python
+
+### Changed
+- Deprecate `<aligator/modelling/dynamics/context.hpp>` (https://github.com/Simple-Robotics/aligator/pull/390)
+- pixi: require Pinocchio>=3.9.0 (https://github.com/Simple-Robotics/aligator/pull/390)
+- pixi: allow Eigen3>=5.0.0 (https://github.com/Simple-Robotics/aligator/pull/390)
+- CMake: require Eigen3 between 3.4.0 and major version 5 (https://github.com/Simple-Robotics/aligator/pull/390)
+
+### Removed
+- Remove test `solver-storage` (https://github.com/Simple-Robotics/aligator/pull/390)
+- Remove templated using-alias `StdVectorEigenAligned` (https://github.com/Simple-Robotics/aligator/pull/390)
+
+### Fixed
+
+- Update finite difference helper to support explicit dynamics, replacing the obsolete implicit-only implementation. (https://github.com/Simple-Robotics/aligator/pull/392)
+- Fix `SolverProxDDP::tryLinearStep()` temporary control update buffer allocation to use `nu_max` instead of `ndx_max`. (https://github.com/Simple-Robotics/aligator/pull/397)
+
+
 ## [0.18.0] - 2026-01-27
 
 ### Added
@@ -477,7 +507,9 @@ The following **API-BREAKING** changes come from PR [#229](https://github.com/Si
 
 * This is the first release of `aligator`. This library is a joint effort between INRIA and LAAS-CNRS, and will be maintained and expanded in the future. Please provide constructive feedback and contribute!
 
-[Unreleased]: https://github.com/Simple-Robotics/aligator/compare/v0.18.0...HEAD
+[Unreleased]: https://github.com/Simple-Robotics/aligator/compare/v0.19.1...HEAD
+[0.19.1]: https://github.com/Simple-Robotics/aligator/compare/v0.19.0...v0.19.1
+[0.19.0]: https://github.com/Simple-Robotics/aligator/compare/v0.18.0...v0.19.0
 [0.18.0]: https://github.com/Simple-Robotics/aligator/compare/v0.17.1...v0.18.0
 [0.17.1]: https://github.com/Simple-Robotics/aligator/compare/v0.17.0...v0.17.1
 [0.17.0]: https://github.com/Simple-Robotics/aligator/compare/v0.16.0...v0.17.0

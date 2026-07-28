@@ -3,7 +3,7 @@
 
 #include <fmt/color.h>
 #include <fmt/ranges.h>
-#include <cassert>
+#include <fmt/format.h>
 #include <vector>
 
 namespace aligator {

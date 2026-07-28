@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2022-2024 LAAS-CNRS, 2022-2025 INRIA
+# Copyright (C) 2022-2024 LAAS-CNRS, 2022-2026 INRIA
 #
 
 cmake_minimum_required(VERSION 3.22)
@@ -194,13 +194,8 @@ endif()
 # ----------------------------------------------------
 # --- DEPENDENCIES -----------------------------------
 # ----------------------------------------------------
-add_project_dependency(
-  Eigen3
-  3.3.7
-  REQUIRED
-  PKG_CONFIG_REQUIRES "eigen3 >= 3.3.7"
-)
-add_project_dependency(fmt REQUIRED PKG_CONFIG_REQUIRES "fmt >= 10.0.0")
+add_project_dependency(Eigen3 REQUIRED)
+add_project_dependency(fmt REQUIRED)
 if(BUILD_WITH_UBUNTU_22_COMPATIBILITY)
   set(
     CMAKE_MODULE_PATH

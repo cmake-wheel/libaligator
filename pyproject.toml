@@ -1,7 +1,7 @@
 [build-system]
 build-backend = "cmeel"
 requires = [
-  "cmeel-boost ~= 1.89.0",
+  "cmeel-boost ~= 1.90.0",
   "cmeel-fmt[build]",
   "cmeel-mimalloc[build]",
   "cmeel[build]",
@@ -12,7 +12,7 @@ requires = [
 
 [project]
 dependencies = [
-  "cmeel-boost ~= 1.89.0",
+  "cmeel-boost ~= 1.90.0",
   "cmeel-fmt",
   "cmeel-mimalloc",
   "libcrocoddyl",
@@ -23,8 +23,8 @@ description = "Versatile and efficient framework for constrained trajectory opti
 license = "BSD-2-Clause"
 name = "libaligator"
 readme = "README.md"
-requires-python = ">=3.9"
-version = "0.18.0"
+requires-python = ">=3.10"
+version = "0.19.1"
 
 [tool.cmeel]
 configure-args = [

@@ -15,6 +15,8 @@
 
 #include "aligator/tracy.hpp"
 
+#include <fmt/format.h>
+
 namespace aligator {
 
 // [1], related to Appendix A, details on aug. Lagrangian method
@@ -129,7 +131,7 @@ Scalar SolverProxDDPTpl<Scalar>::tryLinearStep(const Problem &problem,
   }
   ndx_max = std::max(ndx_max, workspace_.dxs.back().size());
   ArenaMatrix<VectorXs> dx_tmp{ndx_max, allocator_};
-  ArenaMatrix<VectorXs> du_tmp{ndx_max, allocator_};
+  ArenaMatrix<VectorXs> du_tmp{nu_max, allocator_};
 
   for (size_t i = 0; i < nsteps; i++) {
     const StageModel &stage = *problem.stages_[i];
